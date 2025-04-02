@@ -1,0 +1,42 @@
+# Archivos de compilación
+*.class
+*.jar
+*.war
+*.ear
+
+# Archivos de configuración del IDE
+.idea/
+.vscode/
+*.iml
+
+# Archivos de entorno
+*.log
+
+# Archivos temporales de compilación
+/build/
+out/
+
+# Archivos de configuración de Maven
+target/
+
+# Archivos de configuración de Gradle
+.gradle/
+*.gradle
+
+# Archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de dependencia local
+lib/
+
+# Archivos de contenedor de dependencias (si usas Docker)
+docker-compose.override.yml
+
+# Archivos específicos de Eclipse
+.project
+.classpath
+.settings/
+
+# Archivos específicos de NetBeans
+nbproject/
