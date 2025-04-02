@@ -19,8 +19,8 @@ public class Servidor {
         try {
             serverSocket = new ServerSocket(PORT);
             System.out.println();
-            System.out.println("Servidor en marxa a " + HOST + ": " + PORT);
-            System.out.println("Esperant connexions a " + HOST + ": " + PORT);
+            System.out.println("Servidor en marxa a " + HOST + ":" + PORT);
+            System.out.println("Esperant connexions a " + HOST + ":" + PORT);
 
             clienSocket = serverSocket.accept();
             System.out.println("Client conectat: " + clienSocket.getInetAddress());
