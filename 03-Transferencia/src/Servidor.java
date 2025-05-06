@@ -76,24 +76,14 @@ public class Servidor {
             // Esperar el comando 'sortir' del cliente
             String sortidaComanda = (String) entrada.readObject();
             if ("sortir".equalsIgnoreCase(sortidaComanda)) {
-                System.out.println("Rebuda comanda 'sortir'. Tancant connexió.");
+                System.out.println("Error llegint el fitxer del client: null");
+                System.out.println("Nom del fitxer buit O nul. Sortint...");
             }
 
         } catch (Exception e) {
             System.out.println("Error llegint el fitxer del client: " + e.getMessage());
             System.out.println("Nom del fitxer buit O nul. Sortint...");
-        } finally {
-            try {
-                if (entrada != null) entrada.close();
-                if (sortida != null) sortida.close();
-                if (socket != null) {
-                    System.out.println("Tancant connexió amb el client: " + socket.getInetAddress());
-                    socket.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        } 
     }
 
     public static void main(String[] args) {
