@@ -6,28 +6,20 @@ public class Fitxer {
     private String nom;
     private byte[] contingut;
 
-    public Fitxer(String nom){
+    public Fitxer(String nom) {
         this.nom = nom;
     }
 
-    public void getContingut(){
+    public byte[] getContingutBytes() {
         File fitxer = new File(nom);
         if (!fitxer.exists() || !fitxer.isFile()) {
-            System.out.println("Fitxer no trobat: " + nom);
-            contingut = new byte[0];
-            return;
+            return null;
         }
-
         try {
-            contingut = Files.readAllBytes(fitxer.toPath());
+            return Files.readAllBytes(fitxer.toPath());
         } catch (IOException e) {
-            e.printStackTrace();
-            contingut = new byte[0];
+            return null;
         }
     }
-
-    public byte[] getContingutBytes() {
-        return contingut;
-    }
-
 }
+
