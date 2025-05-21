@@ -6,12 +6,13 @@ import java.util.Hashtable;
 public class ServidorXat {
     static final int PORT = 9999;
     static final String HOST = "localhost";
-    static final String MSG_SORTIR = "sortir";
+    static final String MSG_SORTIR = "Adéu";
     Hashtable<String, GestorClients> clients = new Hashtable<>();
     private boolean sortir = false;
 
     public void servidorAEscoltar(){
         try (ServerSocket serverSocket = new ServerSocket(PORT)){
+            System.out.println();
             System.out.println("Servidor iniciat a " + HOST + ":" + PORT);
 
             while(true){
@@ -27,9 +28,10 @@ public class ServidorXat {
     }
 
     public void finalitzarXat(){
-        enviarMissatgeGrup(MSG_SORTIR);
+        enviarMissatgeGrup(MSG_SORTIR); 
         clients.clear();
         System.out.println("Tancant tots els clients.");
+        System.out.println("DEBUG: multicast sortir");
         System.exit(0);
     }
 
@@ -56,8 +58,10 @@ public class ServidorXat {
     public void enviarMissatgePersonal(String nomDestinatari, String nomRemitent, String msg){        
         GestorClients client = clients.get(nomDestinatari); 
         if(client != null){
-
+            System.out.println("Missatge personal per (" + nomDestinatari + ") de (" + nomRemitent + "): " + msg);
             client.enviarMissatge(nomRemitent, msg);
+        } else {
+            System.out.println("Destinatari no trobat: " + nomDestinatari);
         }
         
     }

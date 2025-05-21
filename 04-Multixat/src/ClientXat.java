@@ -9,11 +9,13 @@ public class ClientXat {
     private ObjectOutputStream sortida;
     private ObjectInputStream entrada;
     private boolean sortir = false;
+    private String nomUsuari;
     
     public void connectar() {
         try {
             socket = new Socket("localhost", 9999);
             sortida = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println();
             System.out.println("Client connectat a localhost:9999");
             System.out.println("Flux d'entrada i sortida creat.");
 
@@ -45,8 +47,11 @@ public class ClientXat {
                     case Missatge.CODI_SORTIR_TOTS:
                         sortir = true;
                         break;
-                    case Missatge.CODI_MSG_PERSONAL:
-                        break;
+                   case Missatge.CODI_MSG_PERSONAL:
+                    if (!parts[2].equals("(Servidor) : 1002") && !parts[2].equals("(Servidor) : Adéu")) {
+                        System.out.println("Missatge de " + parts[2]);
+                    }
+                    break;
                     case Missatge.CODI_MSG_GRUP:
                         break;
                     default:
@@ -67,6 +72,8 @@ public class ClientXat {
             if (sortida != null) sortida.close();
             if (socket != null) socket.close();
             System.out.println("Tancant client...");
+            System.out.println("Flux d'entrada tancat.");
+            System.out.println("Flux de sortida tancat.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,14 +98,16 @@ public class ClientXat {
     public static void main(String[] args) {
         ClientXat client = new ClientXat();
         client.connectar();
-        mostraAjuda();
+        
 
         while (!client.sortir) {
+            mostraAjuda();
             String opcio = client.getLinia(); 
             switch (opcio) {
                 case "1":
                     System.out.print("Introdueix el nom: ");
                     String nom = client.getLinia();  
+                    client.nomUsuari = nom;
                     client.enviarMissatge(Missatge.getMissatgeConectar(nom));
                     break;
                 case "2":

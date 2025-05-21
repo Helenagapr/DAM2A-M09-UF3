@@ -37,7 +37,7 @@ public class GestorClients extends Thread{
 
     public void enviarMissatge(String remitent, String missatge) {
         try {
-            sortida.writeObject(Missatge.getMissatgePersonal(nom, remitent + ": " + missatge));
+            sortida.writeObject(Missatge.getMissatgePersonal(nom, "(" +remitent + ") : " + missatge));
             sortida.flush();
         } catch (IOException e) {
             System.out.println("oos null. Sortint...");
