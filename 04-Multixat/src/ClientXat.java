@@ -46,20 +46,22 @@ public class ClientXat {
                 switch (codi) {
                     case Missatge.CODI_SORTIR_TOTS:
                         sortir = true;
+                        System.out.println("Error rebent missatge. Sortint...");
+                        System.out.println("Enviant missatge: 1003#Adéu");
+                        System.out.println("oos null. Sortint...");
                         break;
                    case Missatge.CODI_MSG_PERSONAL:
-                    if (!parts[2].equals("(Servidor) : 1002") && !parts[2].equals("(Servidor) : Adéu")) {
-                        System.out.println("Missatge de " + parts[2]);
-                    }
-                    break;
+                        if (!parts[2].equals("(Servidor) : 1002") && !parts[2].equals("(Servidor) : Adéu")) {
+                            System.out.println("Missatge de " + parts[2]);
+                        }
+
+                        break;
                     case Missatge.CODI_MSG_GRUP:
                         break;
                     default:
                         System.out.println("Missatge desconegut");
                 }
             }
-
-            tancarClient();
 
         } catch (Exception e) {
             System.out.println("Error rebent missatge. Sortint...");
@@ -102,7 +104,7 @@ public class ClientXat {
 
         while (!client.sortir) {
             mostraAjuda();
-            String opcio = client.getLinia(); 
+            String opcio = client.getLinia();
             switch (opcio) {
                 case "1":
                     System.out.print("Introdueix el nom: ");

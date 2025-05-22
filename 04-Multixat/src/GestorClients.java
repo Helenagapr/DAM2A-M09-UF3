@@ -44,6 +44,15 @@ public class GestorClients extends Thread{
         }
     }
 
+    public void enviarMissatgeBrut(String missatge) {
+        try {
+            sortida.writeObject(missatge);
+            sortida.flush();
+        } catch (IOException e) {
+            System.out.println("oos null. Sortint...");
+        }
+    }
+
     public void processaMissatge(String missatge){
         String codi = Missatge.getCodiMissatge(missatge);
         String[] parts = Missatge.getPartsMissatge(missatge);

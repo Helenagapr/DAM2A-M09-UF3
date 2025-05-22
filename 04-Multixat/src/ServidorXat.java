@@ -28,7 +28,8 @@ public class ServidorXat {
     }
 
     public void finalitzarXat(){
-        enviarMissatgeGrup(MSG_SORTIR); 
+        String msgSortirTots = Missatge.getMissatgeSortirTots(MSG_SORTIR);
+        enviarMissatgeGrup(msgSortirTots); 
         clients.clear();
         System.out.println("Tancant tots els clients.");
         System.out.println("DEBUG: multicast sortir");
@@ -51,7 +52,7 @@ public class ServidorXat {
 
     public void enviarMissatgeGrup(String msg){
         for(GestorClients gestor: clients.values()){
-            gestor.enviarMissatge("Servidor", msg);
+           gestor.enviarMissatgeBrut(msg);
         }
     }
 
